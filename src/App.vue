@@ -5,9 +5,13 @@
       <p @click="clickP">
         P 영역
         <span @click.stop="clickSpan">SPAN 영역</span>
+        <a href="https://naver.com" @click.prevent.stop="clickA">a 영역</a>
       </p>
     </div>
   </div>
+
+  <a href="https://naver.com" @click.prevent="clickA">a 영역</a>
+
 </template>
 
 <script>
@@ -25,11 +29,16 @@ export default {
       //e.stopPropagation();
       alert('좋아요')
     }
+    const clickA = () => {
+      //e.preventDefault();
+      alert('어떤기능');
+    }
 
     return {
       clickDiv,
       clickP,
-      clickSpan
+      clickSpan,
+      clickA,
     }
   }
 }
