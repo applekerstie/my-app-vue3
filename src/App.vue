@@ -4,8 +4,7 @@
       DIV 영역
       <p @click="clickP">
         P 영역
-        <span @click="clickSpan">SPAN 영역</span>
-        <a href="https://naver.com">a 영역</a>
+        <span @click.stop="clickSpan">SPAN 영역</span>
       </p>
     </div>
   </div>
@@ -21,9 +20,9 @@ export default {
     const clickP = () => {
       console.log('clickP');
     }
-    const clickSpan = (e) => {
+    const clickSpan = () => {
       console.log('clickSpan');
-      e.stopPropagation();
+      //e.stopPropagation();
       alert('좋아요')
     }
 
