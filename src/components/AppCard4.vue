@@ -1,10 +1,19 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <span class="badge bg-secondary">{{ typeName }}</span> 
+      <!--
+      <span class="badge bg-secondary">{{ type === 'news'? '뉴스' : '공지사항' }}</span>
+      -->
+      <span class="badge bg-secondary">{{ typeName }}</span>
+      
       <h5 class="card-title mt-2">{{ title }}</h5>
       <p class="card-text">{{ contents }}</p>
-      <a href="javascript:void(0);" class="btn" :class="isLikeClass" v-on:click="toggleLike">좋아요</a>
+
+      <!--
+      <a v-if="isLike" href="#" class="btn btn-danger">좋아요</a>
+      <a v-else href="#" class="btn btn-outline-danger">좋아요</a>
+      -->
+      <a href="#" class="btn" :class="isLikeClass" v-on:click="toggleLike">좋아요</a>
     </div>
   </div>
 </template>
@@ -33,9 +42,24 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    
+    obj: {
+      type: Object,
+      //default: {} // 이렇게 하면 안됨. 디폴트 선언시 기본값을 반환하는 팩토리 함수형태로 선언해줘야함
+      /*
+      default: function() {
+        return {}
+      },
+      */
+     default: () => { // arrow 함수로 변경
+
+     }
+
+    }
+
   },
-  emits: ['toggleLike1'],
-  setup (props, context) {
+  setup (props) {
     console.log('props.title:', props.title);
     const isLikeClass = computed(() =>
       props.isLike ? 'btn-danger' : 'btn-outline-danger',
@@ -46,7 +70,7 @@ export default {
 
 
     const toggleLike = () => {
-      context.emit('toggleLike1')
+      //props.isLike = !props.isLike; // [Vue warn] Set operation on key "isLike" failed: target is readonly.
     };
 
 

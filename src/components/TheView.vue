@@ -18,11 +18,21 @@
           />
         </div>
         <div class="col col-4" v-for="post in posts2" :key="post.id">
+          <AppCard4
+            :title="post.titleValue" 
+            :contents="post.contentsValue" 
+            :type="post.type" 
+            :is-like="post.isLike" 
+          />
+          <button v-on:click="post.isLike = !post.isLike">toggle</button>
+        </div>
+        <div class="col col-4" v-for="post in posts3" :key="post.id">
           <AppCard
             :title="post.titleValue" 
             :contents="post.contentsValue" 
             :type="post.type" 
             :is-like="post.isLike" 
+            @toggle-like1="post.isLike = !post.isLike"
           />
         </div>
       </div>
@@ -35,6 +45,8 @@ import AppCard from '@/components/AppCard.vue';
 import AppCard1 from '@/components/AppCard1.vue';
 import AppCard2 from '@/components/AppCard2.vue';
 import AppCard3 from '@/components/AppCard3.vue';
+import AppCard4 from '@/components/AppCard4.vue';
+
 import { reactive } from 'vue';
 
 export default {
@@ -43,6 +55,7 @@ export default {
     AppCard1,
     AppCard2,
     AppCard3,
+    AppCard4,
   },
   setup () {
     
@@ -59,9 +72,16 @@ export default {
       { id:3, titleValue:"제목333", contentsValue:"내용333", isLike: false, type: 'notice'},
     ]);
 
+    const posts3 = reactive([
+      { id:1, titleValue:"제목1111", contentsValue:"내용1111", isLike: false, type: 'news'},
+      { id:2, titleValue:"제목2222", contentsValue:"내용2222", isLike: false, type: 'news'},
+      { id:3, titleValue:"제목3333", contentsValue:"내용3333", isLike: false, type: 'news'},
+    ]);
+
     return {
       posts,
       posts2,
+      posts3,
     }
   }
 }
