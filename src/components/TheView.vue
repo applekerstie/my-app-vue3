@@ -2,7 +2,7 @@
   <main>
     <div class="container py-4">
       <!-- 2. 부모컴포넌트에서 v-on으로 이벤트를 받는다  -->
-      <PostCreate v-on:create-post="createPost1" />
+      <PostCreate v-on:create-post="createPost1" v-on:save-post="savePost1" />
 
       <div class="row g-3">
         <div class="col col-4"> <!-- add col-4 -->
@@ -109,12 +109,17 @@ export default {
       console.log( 'createPost1', a, b, c, d );
     }
 
+    const savePost1 = (newTitle) => {
+      console.log('savePost1: ', newTitle);
+    }
+
     return {
       posts,
       posts2,
       posts3,
       obj1,
       createPost1,
+      savePost1,
     }
   }
 }
