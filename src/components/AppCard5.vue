@@ -5,6 +5,8 @@
       <h5 class="card-title mt-2">{{ title }}</h5>
       <p class="card-text">{{ contents }}</p>
       <a href="javascript:void(0);" class="btn" :class="isLikeClass" v-on:click="toggleLike">좋아요</a>
+      <br />
+      {{ obj }}
     </div>
   </div>
 </template>
@@ -32,6 +34,10 @@ export default {
     isLike: {
       type: Boolean,
       default: false,
+    },
+    obj: {
+      type: Object,
+      default: () => {},
     },
   },
   emits: ['toggleLike1'],
