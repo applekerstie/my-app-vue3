@@ -4,10 +4,22 @@
     <!--<button class="btn btn-primary mb-3" v-on:click="$emit('createPost')">Create</button>-->
     <!--<button class="btn btn-primary mb-3" v-on:click="$emit('createPost', 1, 2, 3, '김길동')">Create</button>-->
     <button class="btn btn-primary mb-3" v-on:click="createPost">button</button>
-
-    <input type="text" class="form-control" v-model="title" />
-    <button class="btn btn-primary mb-3" v-on:click="savePost">savePost</button>
     
+    <div class="row g-3">
+      <div class="col col-2">
+        <select v-model="typeValue" class="form-select" aria-label=".form-select-sm example">
+          <option selected>Open this select menu</option>
+          <option value="news">뉴스</option>
+          <option value="notice">공지사항</option>
+        </select>
+      </div>
+      <div class="col col-8">
+        <input type="text" class="form-control" v-model="titleValue" />
+      </div>
+      <div class="col col-2 d-grid">
+        <button class="btn btn-primary mb-3" v-on:click="savePost">추가</button>
+      </div>     
+    </div>
   </div>
 </template>
 
@@ -17,9 +29,10 @@ import { ref } from 'vue';
 export default {
   //emits: ['createPost'],
   emits: {
-    savePost: newTitle => {
-      console.log('validator: ', newTitle);
-      if( !newTitle){
+    savePost: newPost => {
+      if( !newPost.type){
+        return false;
+      }else if( !newPost.titleValue){
         return false;
       }
       return true;
@@ -46,14 +59,25 @@ export default {
       emit('createPost', 1, 2, 3, '김길동');
     }
 
-    const title = ref('');
+    const typeValue = ref('news');
+    const titleValue = ref('');
+
     const savePost = () => {
-      emit('savePost', title.value );
+      const newPost = {
+        titleValue: titleValue.value,
+        type: typeValue.value,
+      };
+      emit('savePost', newPost );
+
+      typeValue.value = 'news';
+      titleValue.value = '';
+
     }
 
     return {
       createPost,
-      title,
+      titleValue,
+      typeValue,
       savePost,
     }
   }

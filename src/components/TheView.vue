@@ -3,6 +3,7 @@
     <div class="container py-4">
       <!-- 2. 부모컴포넌트에서 v-on으로 이벤트를 받는다  -->
       <PostCreate v-on:create-post="createPost1" v-on:save-post="savePost1" />
+      <hr class="my-0 mb-3">
 
       <div class="row g-3">
         <div class="col col-4"> <!-- add col-4 -->
@@ -39,7 +40,7 @@
             :obj="obj1"
           />
         </div>
-        <div class="col col-4" v-for="post in posts3" :key="post.id">
+        <div class="col col-4" v-for="post in posts4" :key="post.id">
           <AppCard
             :title="post.titleValue" 
             :contents="post.contentsValue" 
@@ -100,6 +101,12 @@ export default {
       { id:3, titleValue:"제목3333", contentsValue:"내용3333", isLike: false, type: 'news'},
     ]);
 
+    const posts4 = reactive([
+      { id:1, titleValue:"제목11111", contentsValue:"내용11111", isLike: false, type: 'news'},
+      { id:2, titleValue:"제목22222", contentsValue:"내용22222", isLike: false, type: 'news'},
+      { id:3, titleValue:"제목33333", contentsValue:"내용33333", isLike: false, type: 'news'},
+    ]);
+
     /*
     const createPost1 = () => {
       console.log( 'createPost1' );
@@ -109,14 +116,26 @@ export default {
       console.log( 'createPost1', a, b, c, d );
     }
 
-    const savePost1 = (newTitle) => {
-      console.log('savePost1: ', newTitle);
+    const savePost1 = (newPost) => {
+      console.log('savePost1: ', newPost);
+
+      const { titleValue, type } = newPost;
+      posts4.push( { 
+        id: posts4.length+1,
+        titleValue: titleValue,
+        contentsValue: '',
+        isLike: false,
+        type: type,
+      });
+
+      console.log('posts4: ', posts4);
     }
 
     return {
       posts,
       posts2,
       posts3,
+      posts4,
       obj1,
       createPost1,
       savePost1,
