@@ -24,14 +24,46 @@
     <h2>checkbox value</h2>
     <!-- checked / change event -->
     <div class="form-check">
+      
       <input class="form-check-input" type="checkbox" id="flexCheckDefault"
       :checked="checkboxValue"
       v-on:change="event => ( checkboxValue = event.target.checked )"
       />
+      
+      <!--
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+      v-model="checkboxValue"
+      true-value="Yes"
+      false-value="No"
+      />
+      -->
       <label class="form-check-label" for="flexCheckDefault">
         {{ checkboxValue }}
       </label>
     </div>
+
+    <hr class="mt-4" />
+
+    <h2>checkbox values</h2>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="1" id="flexCheck1" v-model="checkboxValues" />
+      <label class="form-check-label" for="flexCheck1">
+        1
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="2" id="flexCheck2" v-model="checkboxValues" />
+      <label class="form-check-label" for="flexCheck2">
+        2
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="3" id="flexCheck3" v-model="checkboxValues" />
+      <label class="form-check-label" for="flexCheck3">
+        3
+      </label>
+    </div>
+    <p>{{ checkboxValues }}</p>
 
     <hr class="mt-4" />
 
@@ -68,7 +100,6 @@
     :value="selectValue"
     v-on:change="event => (selectValue = event.target.value)"
     >
-      <option selected>Open this select menu</option>
       <option value="1">One</option>
       <option value="2">Two</option>
       <option value="3">Three</option>
@@ -88,6 +119,7 @@ export default {
     const checkboxValue = ref(true);
     const radioValue = ref('O');
     const selectValue = ref('');
+    const checkboxValues = ref([]);
 
     return {
       inputValue,
@@ -95,6 +127,7 @@ export default {
       checkboxValue,
       radioValue,
       selectValue,
+      checkboxValues,
     }
   }
 }
