@@ -62,3 +62,14 @@ code .
 npm install
 ```
 
+### 5. Bootstrap5 설치
+
+```sh
+npm install bootstrap@5
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.js';
+
+https://getbootstrap.kr/docs/5.0/getting-started/introduction/
+```
+
