@@ -1,6 +1,9 @@
 <template>
   <main>
     <div class="container py-4">
+      <!-- 2. 부모컴포넌트에서 v-on으로 이벤트를 받는다  -->
+      <PostCreate v-on:create-post="createPost1" />
+
       <div class="row g-3">
         <div class="col col-4"> <!-- add col-4 -->
           <AppCard1 title="제목1" contents="내용1" />
@@ -58,6 +61,8 @@ import AppCard3 from '@/components/AppCard3.vue';
 import AppCard4 from '@/components/AppCard4.vue';
 import AppCard5 from '@/components/AppCard5.vue';
 
+import PostCreate from './PostCreate.vue';
+
 import { reactive } from 'vue';
 
 export default {
@@ -68,6 +73,7 @@ export default {
     AppCard3,
     AppCard4,
     AppCard5,
+    PostCreate,
   },
   setup () {
     const obj1 = reactive({
@@ -94,11 +100,21 @@ export default {
       { id:3, titleValue:"제목3333", contentsValue:"내용3333", isLike: false, type: 'news'},
     ]);
 
+    /*
+    const createPost1 = () => {
+      console.log( 'createPost1' );
+    }
+    */
+    const createPost1 = (a, b, c, d) => {
+      console.log( 'createPost1', a, b, c, d );
+    }
+
     return {
       posts,
       posts2,
       posts3,
       obj1,
+      createPost1,
     }
   }
 }
