@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <h5 class="card-title" :class="$style.red">{{ title }} {{ post.title }}</h5>
+      <span class="badge bg-secondary">New</span>
+      <h5 class="card-title mt-2" :class="$style.red">{{ title }} {{ post.title }}</h5>
       <p class="card-text">{{ contents }} {{ post.contents }}</p>
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
